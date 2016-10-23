@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>emails</title>
+    </head>
+    <body>
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }} </p>
+        {% endfor %}
+        {% endif %}
+
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>email</th>
+            <th>created</th>
+            <th class='action'>Action</th>
+          </tr>
+          {% for email in all_emails %}
+          <tr>
+            <th>{{ email.id }}</th>
+            <th>{{ email.email }}</th>
+            <th>{{ email.created_at }}</th>
+            <th class='action'>
+            <form  class='mybutton' action="{% url 'del_prompt' id=email.id %}" method="post">{% csrf_token %}<input type="submit" value="Delete"></form>
+            </th>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <form  class='mybutton' action="{% url 'index' %}" method="get">{% csrf_token %}<input type="submit" value="Add new email"></form>
+    </body>
+</html>
