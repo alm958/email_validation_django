@@ -30,13 +30,6 @@ class EmailManager(models.Manager):
         }
         return render(request, 'emailv/delete_prompt.html', context )
 
-    def del_course(request, id):
-        Email.objects.filter(id=id).delete()
-        return redirect(reverse( 'index' ) )
-
-
-
-
 # Create your models here.
 class Email(models.Model):
     email = models.EmailField(max_length=255, unique=True)
